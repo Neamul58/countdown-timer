@@ -1,34 +1,38 @@
-const days = document.getElementById('days');
-const hours = document.getElementById('hours');
+
+//SELECTOR
+const days = document.getElementById("days");
+const hours = document.getElementById("hours");
 const mins = document.getElementById("min");
 const secs = document.getElementById("sec");
 
+//FOR MANAGE TWO DIGIT
 const timeFormat = (time)=> {
     return time < 10 ? `0${time}` : time;
 }
 
+//UPDATE TIME 
 const updateCountdown = (deadLine)=> {
     const currentTime = new Date();
     const timeDiff = deadLine - currentTime;
-//    console.log(timeDiff);
+    
+//    CALCULATE DAYS, HOURS, MINUITES AND SECONDS 
     const calcSec = Math.floor(timeDiff/1000) % 60;
-//    console.log(calcSec);
     const calcMin = Math.floor(timeDiff/1000/60) % 60;
-//    console.log(calcMin);
     const calcHour = Math.floor(timeDiff/1000/60/60) % 24;
-//    console.log(calcHour);
-    const calcDay = Math.floor(timeDiff/1000/60/60/24);
-//    console.log(calcDay);
-     
-    days.textContent = timeFormat(calcDay);
+    const calcday = Math.floor(timeDiff/1000/60/60/24);
+    
+//    FOR SHOWING RESULT ON DISPLAY
+    days.textContent = timeFormat(calcday);
     hours.textContent = timeFormat(calcHour);
     mins.textContent = timeFormat(calcMin);
     secs.textContent = timeFormat(calcSec);
 }
 
-const countDown = (targetDate)=> {
+//FOR COUNTDOWN TIME IN EVERY SECOND
+const countdown = (targetDate)=> {
     setInterval(()=> updateCountdown(targetDate), 1000);
 }
 
-const targetDate = new Date('january 30 2026 23:59');
-countDown(targetDate);
+//TIME DEADLINE
+const targetDate = new Date("january 30 2026 23:59");
+countdown(targetDate);
